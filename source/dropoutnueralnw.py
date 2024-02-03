@@ -22,3 +22,34 @@ from sklearn.metrics import accuracy_score
 data = pd.read_csv('data/Dataset/emergency_classification.csv')
 
 print(data.head())
+
+# create random number generator
+seed = 42
+rng = np.random.RandomState(seed)
+
+# load images and store it in numpy array
+# empty list to store the images
+X = []
+# iterating over each image
+for img_name in data.image_names:
+    # loading the image using its name
+    img = plt.imread('Dataset/images/' + img_name)
+    # saving each image in the list
+    X.append(img)
+ 
+     
+# converting the list of images into array
+X=np.array(X)
+
+# storing the target variable in separate variable
+y = data.emergency_or_not.values
+
+## 2. Pre-processing the data
+# converting 3 dimensional image to 1 dimensional image
+X = X.reshape(X.shape[0], 224*224*3)
+
+print(X.shape)
+
+
+
+
