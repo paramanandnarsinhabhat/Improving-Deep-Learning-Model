@@ -86,4 +86,73 @@ adam = Adam(lr=1e-5)
 # Compile the model and specify the optimizer (Adam) correctly
 model.compile(loss='binary_crossentropy', optimizer=Adam(), metrics=['accuracy'])
 
+## 6. Setting up Early Stopping
 
+# importing module for early stopping
+from keras.callbacks import EarlyStopping
+
+# setting up early stopping
+early_stopping = EarlyStopping(monitor='val_loss', min_delta=0.01, patience=5, mode='min')
+
+## 7. Training the model using Early Stopping
+# training the model for 100 epochs
+# training the model for 100 epochs
+
+# defining the early stopping as callback using callbacks parameter of model.fit
+model_history = model.fit(X_train, y_train, epochs=100, batch_size=128,validation_data=(X_valid,y_valid), callbacks=[early_stopping])
+from sklearn.metrics import accuracy_score
+
+# Assuming binary classification
+# accuracy on validation set
+accuracy = accuracy_score(y_valid, (model.predict(X_valid) > 0.5).astype(int))
+print('Accuracy on validation set:', accuracy * 100, '%')
+
+ # summarize history for loss
+plt.plot(model_history.history['loss'])
+plt.plot(model_history.history['val_loss'])
+plt.title('model loss')
+plt.ylabel('loss')
+plt.xlabel('epoch')
+plt.legend(['train', 'validation'], loc='upper right')
+plt.show()
+
+## Hyperparameter tuning for Early Stopping (Increasing the patience value)
+
+# defining and compiling the model
+
+# defining the model architecture
+model=Sequential()
+
+model.add(InputLayer(input_shape=(224*224*3,)))
+model.add(Dense(100, activation='sigmoid'))
+model.add(Dense(100, activation='sigmoid'))
+model.add(Dense(units=1, activation='sigmoid'))
+
+# compiling the model
+model.compile(loss='binary_crossentropy', optimizer=Adam(), metrics=['accuracy'])
+
+# increasing the patience and threshold value
+early_stopping = EarlyStopping(monitor='val_loss', min_delta=0.01, patience=10, mode='min')
+
+# training the model for 100 epochs
+model_history = model.fit(X_train, y_train, epochs=100, batch_size=128,validation_data=(X_valid,y_valid), callbacks=[early_stopping])
+
+
+accuracy = accuracy_score(y_valid, (model.predict(X_valid) > 0.5).astype(int))
+print('Accuracy on validation set:', accuracy * 100, '%')
+# Assuming binary classification
+y_pred = model.predict(X_valid)
+y_pred_classes = (y_pred > 0.5).astype(int)
+accuracy = accuracy_score(y_valid, y_pred_classes)
+print('Accuracy on validation set:', accuracy * 100, '%')
+# accuracy on validation set
+# accuracy on validation set
+
+# summarize history for loss
+plt.plot(model_history.history['loss'])
+plt.plot(model_history.history['val_loss'])
+plt.title('model loss')
+plt.ylabel('loss')
+plt.xlabel('epoch')
+plt.legend(['train', 'validation'], loc='upper right')
+plt.show()
