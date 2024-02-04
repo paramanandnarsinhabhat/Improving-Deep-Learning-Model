@@ -276,3 +276,61 @@ The dataset contains images of vehicles labeled as emergency or non-emergency ve
 Batch Normalization improves the stability and performance of the neural network by normalizing the inputs to layers within the model. This project showcases its effectiveness in the context of vehicle classification.
 
 Thank you for exploring this project on Emergency vs Non-Emergency Vehicle Classification with Batch Normalization.
+
+# Image Augmentation for Vehicle Classification
+
+## Overview
+This project demonstrates the use of various image augmentation techniques to enhance the dataset for the classification of vehicles into emergency and non-emergency categories. The augmentation methods include rotation, flipping, noising, and blurring, aimed at improving the robustness and performance of a neural network model.
+
+## Getting Started
+
+### Dependencies
+Ensure you have the following Python libraries installed:
+- Numpy
+- Pandas
+- scikit-image (`skimage`)
+- Matplotlib
+- scikit-learn
+- Keras (with TensorFlow backend)
+
+### Dataset
+The dataset comprises images of vehicles, labeled as either emergency or non-emergency. It's expected to be in a CSV file named `emergency_classification.csv`, containing image names and their labels.
+
+## Implementation Steps
+
+### 1. Image Augmentation Techniques
+The augmentation techniques applied are as follows:
+- **Image Rotation:** Rotating images by a certain angle.
+- **Image Shifting:** Shifting images horizontally or vertically.
+- **Image Flipping:** Flipping images horizontally or vertically.
+- **Image Noising:** Adding random noise to images.
+- **Image Blurring:** Applying a Gaussian blur to images.
+
+### 2. Pre-processing Data
+- Images are loaded, normalized, and converted from 3D to 1D arrays.
+- The dataset is augmented using the techniques mentioned above.
+
+### 3. Creating Training and Validation Sets
+- The augmented dataset is split into training and validation sets.
+
+### 4. Model Architecture
+- A Sequential model is defined with Dense layers, Batch Normalization, and Dropout layers to prevent overfitting.
+- The Adam optimizer is used with a learning rate of `1e-5`.
+
+### 5. Training the Model
+- The model is trained on the augmented dataset for 50 epochs.
+
+### 6. Evaluating Model Performance
+- The model's performance is evaluated on the validation set, with accuracy as the metric.
+
+## Usage
+- Run the Python script or Jupyter Notebook after ensuring all dependencies are installed and the dataset is correctly placed in the project directory.
+- Observe the augmentation effects on the training images and the improvement in model performance due to augmentation and architectural choices.
+
+## Visualization
+- The code includes plots for training and validation loss, as well as accuracy over epochs, to visualize the model's learning process.
+
+## Conclusion
+Image augmentation significantly contributes to enhancing the model's ability to generalize from the training data, leading to improved performance in classifying emergency and non-emergency vehicles.
+
+Thank you for exploring this project on vehicle classification using image augmentation techniques.
