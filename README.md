@@ -152,3 +152,67 @@ To run this project:
 Feel free to contribute to this project by suggesting improvements or by extending it with more advanced features like implementing different gradient clipping strategies or experimenting with other optimizers.
 
 Thank you for exploring this Emergency Vehicle Classification project with gradient clipping in Keras.
+
+
+# Emergency vs Non-Emergency Vehicle Classification
+
+## Overview
+This project aims to classify vehicles into emergency and non-emergency categories using a deep learning model. By leveraging a dataset of vehicle images, the model learns to distinguish between these two classes, offering valuable assistance for automated surveillance and traffic management systems.
+
+## Getting Started
+
+### Prerequisites
+- Python 3.x
+- Keras
+- TensorFlow (backend for Keras)
+- NumPy
+- Pandas
+- Matplotlib
+- scikit-learn
+
+### Dataset
+The dataset consists of vehicle images labeled as either emergency or non-emergency. The `emergency_classification.csv` file contains the image names and their corresponding labels.
+
+## Implementation Steps
+
+### 1. Loading the Dataset
+- Import necessary libraries.
+- Load the dataset using Pandas.
+- Visualize the first few rows of the dataset.
+
+### 2. Pre-processing the Data
+- Load and store images in a NumPy array.
+- Convert images from 3D to 1D arrays.
+- Normalize pixel values to range between 0 and 1.
+
+### 3. Creating Training and Validation Sets
+- Split the dataset into training and validation sets using a 70:30 ratio.
+
+### 4. Defining the Model Architecture with Weight Initialization
+- Use the Keras Sequential model.
+- Add Dense layers with He normal weight initialization to improve training efficiency.
+- Apply sigmoid activation functions suitable for binary classification.
+
+### 5. Compiling the Model
+- Use the Adam optimizer with a learning rate of `1e-5`.
+- Compile the model with binary cross-entropy loss and accuracy as the metric.
+
+### 6. Training the Model
+- Train the model for 50 epochs with a batch size of 128.
+- Use validation data for performance evaluation during training.
+
+### 7. Evaluating Model Performance
+- Predict on the validation set and convert probabilities to binary labels.
+- Calculate and print the accuracy on the validation set.
+- Plot the training and validation loss to visualize the learning process.
+
+## Usage
+To run this project, ensure all prerequisites are installed, then execute the script in a Python environment. Adjust the dataset path according to your setup.
+
+## Contributions
+Contributions to this project are welcome. Feel free to fork the repository and submit pull requests.
+
+## License
+This project is open-sourced under the MIT license.
+
+Thank you for exploring the Emergency vs Non-Emergency Vehicle Classification project.
