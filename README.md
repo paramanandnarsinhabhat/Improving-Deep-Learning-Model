@@ -216,3 +216,63 @@ Contributions to this project are welcome. Feel free to fork the repository and 
 This project is open-sourced under the MIT license.
 
 Thank you for exploring the Emergency vs Non-Emergency Vehicle Classification project.
+
+
+# Emergency vs Non-Emergency Vehicle Classification with Batch Normalization
+
+## Overview
+This project demonstrates the application of Batch Normalization in a neural network to classify vehicles as either emergency or non-emergency. The use of Batch Normalization aims to improve the training process, model accuracy, and convergence speed by normalizing the inputs of each layer.
+
+## Getting Started
+
+### Prerequisites
+- Python
+- Keras
+- TensorFlow
+- NumPy
+- Pandas
+- Matplotlib
+- scikit-learn
+
+### Dataset
+The dataset contains images of vehicles labeled as emergency or non-emergency vehicles. It is loaded from `emergency_classification.csv`, which includes the image names and their corresponding labels.
+
+## Implementation Steps
+
+### 1. Loading the Dataset
+- Essential libraries are imported.
+- The dataset is loaded using Pandas.
+- Images are read and stored in a NumPy array.
+
+### 2. Pre-processing the Data
+- Images are converted from 3D to 1D arrays and normalized.
+
+### 3. Creating Training and Validation Sets
+- The dataset is split into training and validation sets.
+
+### 4. Defining the Model Architecture
+- Two model architectures are defined:
+  - One without Batch Normalization.
+  - Another with Batch Normalization after the dense layers.
+
+### 5. Compiling the Model
+- The Adam optimizer is used with a learning rate of `1e-5`.
+- Binary crossentropy is set as the loss function.
+
+### 6. Training the Model
+- The model is trained for 50 epochs without Batch Normalization and 200 epochs with Batch Normalization to compare the effects.
+
+### 7. Evaluating Model Performance
+- Model performance is evaluated using the accuracy metric on the validation set.
+
+## Usage
+- Ensure all prerequisites are installed.
+- Execute the script in a Python environment to train the model and evaluate its performance.
+
+## Model Comparison
+- The impact of Batch Normalization on model training and performance is demonstrated through training loss and accuracy metrics.
+
+## Conclusion
+Batch Normalization improves the stability and performance of the neural network by normalizing the inputs to layers within the model. This project showcases its effectiveness in the context of vehicle classification.
+
+Thank you for exploring this project on Emergency vs Non-Emergency Vehicle Classification with Batch Normalization.
