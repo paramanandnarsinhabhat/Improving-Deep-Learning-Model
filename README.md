@@ -334,3 +334,60 @@ The augmentation techniques applied are as follows:
 Image augmentation significantly contributes to enhancing the model's ability to generalize from the training data, leading to improved performance in classifying emergency and non-emergency vehicles.
 
 Thank you for exploring this project on vehicle classification using image augmentation techniques.
+
+# Emergency vs Non-Emergency Vehicle Classification with Image Augmentation
+
+## Overview
+This project aims to classify vehicles into emergency and non-emergency categories using a deep learning model. The unique aspect of this project is the use of image augmentation techniques to enhance the training dataset, thereby improving the model's ability to generalize and perform on unseen data.
+
+## Getting Started
+
+### Dependencies
+- Python
+- Numpy
+- Pandas
+- Matplotlib
+- tqdm
+- scikit-learn
+- Keras (with TensorFlow backend)
+
+### Dataset
+The dataset consists of vehicle images labeled as either emergency or non-emergency. It is loaded from a CSV file, `emergency_classification.csv`, containing image names and their corresponding labels.
+
+## Implementation Steps
+
+### 1. Data Preprocessing
+- Load the dataset and normalize the pixel values of images.
+- Split the dataset into training and validation sets.
+
+### 2. Image Augmentation
+Utilize Keras's `ImageDataGenerator` to apply real-time data augmentation techniques, including:
+- Rotation
+- Width and height shifting
+- Horizontal and vertical flipping
+- Fill mode adjustment
+
+### 3. Model Building
+- Define a neural network architecture with layers such as `Dense`, `BatchNormalization`, `Dropout`, and `Flatten`.
+- Use the Adam optimizer with a learning rate of `1e-5`.
+- Compile the model with binary cross-entropy loss and accuracy metrics.
+
+### 4. Model Training
+- Train the model using the `fit_generator` method to accommodate real-time data augmentation.
+- Plot the training and validation loss, as well as accuracy, to visualize the model's performance over epochs.
+
+### 5. Model Evaluation
+- Predict on the training and validation sets.
+- Convert predicted probabilities to binary class labels.
+- Calculate and display the training and validation accuracy.
+
+## Usage
+Run the script after ensuring all dependencies are installed and the dataset is placed in the specified directory. The script performs data preprocessing, augmentation, model training, and evaluation, outputting the model's accuracy and loss plots.
+
+## Visualization
+The project includes visualization of the model's training and validation loss and accuracy, providing insights into the learning process and the impact of image augmentation.
+
+## Conclusion
+Image augmentation significantly enhances the model's ability to classify emergency and non-emergency vehicles by providing a diverse set of training examples. This project showcases a straightforward implementation of augmentation techniques and deep learning for image classification.
+
+Thank you for exploring this Emergency vs Non-Emergency Vehicle Classification project.
