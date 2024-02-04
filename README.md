@@ -89,3 +89,66 @@ The script will output the accuracy of the model on the validation set along wit
 Include a license here if applicable.
 
 Thank you for using this Emergency vs Non-Emergency Vehicle Classification model.
+
+# Emergency Vehicle Classification with Gradient Clipping
+
+## Overview
+This project demonstrates how to implement gradient clipping in Keras to improve the stability of training deep neural networks. Specifically, it focuses on classifying vehicles into emergency and non-emergency categories based on their images.
+
+## Features
+- **Gradient Clipping:** Utilizes gradient clipping to prevent exploding gradients during training, ensuring stable updates to the model weights.
+- **Image Pre-processing:** Images are converted from 3D to 1D arrays and normalized.
+- **Binary Classification:** Uses a simple feedforward neural network for binary classification of images.
+
+## Requirements
+- Python 3.x
+- Keras
+- TensorFlow (Keras backend)
+- NumPy
+- Pandas
+- Matplotlib
+- scikit-learn
+
+## Dataset
+The dataset consists of labeled images of vehicles, indicating whether each vehicle is an emergency or non-emergency vehicle. It is expected to be in CSV format with columns for image names and their corresponding labels.
+
+## Implementation Steps
+
+### 1. Loading the Dataset
+- Import necessary libraries.
+- Read the dataset using Pandas.
+- Load images into a NumPy array.
+
+### 2. Pre-processing the Data
+- Convert images from 3D to 1D arrays.
+- Normalize pixel values.
+
+### 3. Creating Training and Validation Sets
+- Split the dataset into training and validation sets using `train_test_split`.
+
+### 4. Defining the Model Architecture
+- Define a Sequential model with Dense layers.
+- Apply sigmoid activation for binary classification.
+
+### 5. Compiling the Model with Gradient Clipping
+- Use the Adam optimizer with a learning rate of `1e-5`.
+- Set `clipvalue=1` in the Adam optimizer for gradient clipping.
+
+### 6. Training the Model
+- Train the model for 100 epochs with a batch size of 128.
+
+### 7. Evaluating Model Performance
+- Predict classes for the validation set.
+- Calculate and print the accuracy on the validation set.
+- Plot the training and validation loss.
+
+## Usage
+To run this project:
+1. Ensure all required libraries are installed.
+2. Place your dataset in the expected directory and format.
+3. Run the script to train the model and evaluate its performance.
+
+## Contribution
+Feel free to contribute to this project by suggesting improvements or by extending it with more advanced features like implementing different gradient clipping strategies or experimenting with other optimizers.
+
+Thank you for exploring this Emergency Vehicle Classification project with gradient clipping in Keras.
