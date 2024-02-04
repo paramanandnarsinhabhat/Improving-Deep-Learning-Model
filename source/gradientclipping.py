@@ -86,9 +86,29 @@ adam = Adam(lr=1e-5, clipvalue=1)
 # defining optimizer as Adam
 # defining metrics as accuracy
 
-model.compile(loss='binary_crossentropy', optimizer=Adam(), metrics=['accuracy'])
+model.compile(loss='binary_crossentropy', optimizer=adam, metrics=['accuracy'])
 
 ## 6. Training the model
 # training the model for 100 epochs
 
 model_history = model.fit(X_train, y_train, epochs=100, batch_size=128,validation_data=(X_valid,y_valid))
+
+## 7. Evaluating model performance 
+prediction = model.predict(X_valid)
+prediction = prediction.reshape(706,)
+
+# converting probabilities to classes
+prediction_int = prediction >= 0.5
+prediction_int = prediction_int.astype(int)
+
+# accuracy on validation set
+print('Accuracy on validation set:', accuracy_score(y_valid, prediction_int), '%')
+
+# summarize history for loss
+plt.plot(model_history.history['loss'])
+plt.plot(model_history.history['val_loss'])
+plt.title('model loss')
+plt.ylabel('loss')
+plt.xlabel('epoch')
+plt.legend(['train', 'validation'], loc='upper right')
+plt.show()
