@@ -118,3 +118,4 @@ valid_predictions_labels = (valid_predictions > 0.5).astype(int)
 # Calculating validation accuracy
 validation_accuracy = accuracy_score(y_valid, valid_predictions_labels)
 print('\nValidation Accuracy: ', validation_accuracy)
+
