@@ -154,3 +154,21 @@ model.summary()
 
 model.compile(loss='binary_crossentropy', optimizer=Adam(), metrics=['accuracy'])
 
+## Training the model
+# training the model for 50 epochs using Batch Normalization
+
+model_history = model.fit(X_train, y_train, epochs=200, batch_size=128,validation_data=(X_valid,y_valid))
+
+## 7. Evaluating model performance 
+
+from sklearn.metrics import accuracy_score
+
+# Use the model.predict method to get the predicted probabilities
+predicted_probabilities = model.predict(X_valid)
+
+# Convert probabilities to class labels; assume binary classification with a threshold of 0.5
+predicted_labels = (predicted_probabilities > 0.5).astype('int32')
+
+# Calculate accuracy on the validation set
+accuracy = accuracy_score(y_valid, predicted_labels)
+print('Accuracy on validation set:', accuracy * 100, '%')
