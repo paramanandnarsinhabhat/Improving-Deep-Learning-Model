@@ -104,3 +104,5 @@ model.compile(loss='binary_crossentropy', optimizer=adam, metrics=['accuracy'])
 # training the model for 50 epochs
 
 model_history = model.fit(X_train, y_train, epochs=50, batch_size=128,validation_data=(X_valid,y_valid))
+
+
