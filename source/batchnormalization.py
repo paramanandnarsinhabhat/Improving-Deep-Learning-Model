@@ -90,7 +90,7 @@ model.summary()
 
 ## 5. Compiling the model
 # defining the adam optimizer and setting the learning rate as 10^-5
-adam = Adam(lr=1e-5)
+adam = Adam(learning_rate=1e-5)
 
 # compiling the model
 
