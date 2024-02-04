@@ -172,5 +172,24 @@ accuracy = accuracy_score(y_valid, predicted_labels)
 print('Accuracy on validation set:', accuracy * 100, '%')
 
 
+# summarize history for loss
+plt.plot(model_history.history['loss'])
+plt.plot(model_history.history['val_loss'])
+plt.title('model loss')
+plt.ylabel('loss')
+plt.xlabel('epoch')
+plt.legend(['train', 'validation'], loc='upper right')
+plt.show()
+
+# summarize history for accuracy
+plt.plot(model_history.history['acc'])
+plt.plot(model_history.history['val_acc'])
+plt.title('model accuracy')
+plt.ylabel('accuracy')
+plt.xlabel('epoch')
+plt.legend(['train', 'validation'], loc='upper right')
+plt.show()
+
+
 
 
