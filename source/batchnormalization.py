@@ -105,4 +105,52 @@ model.compile(loss='binary_crossentropy', optimizer=adam, metrics=['accuracy'])
 
 model_history = model.fit(X_train, y_train, epochs=50, batch_size=128,validation_data=(X_valid,y_valid))
 
+## 7. Evaluating model performance 
+
+from sklearn.metrics import accuracy_score
+
+# Use the model.predict method to get the predicted probabilities
+predicted_probabilities = model.predict(X_valid)
+
+# Convert probabilities to class labels; assume binary classification with a threshold of 0.5
+predicted_labels = (predicted_probabilities > 0.5).astype('int32')
+
+# Calculate accuracy on the validation set
+accuracy = accuracy_score(y_valid, predicted_labels)
+print('Accuracy on validation set:', accuracy * 100, '%')
+
+# summarize history for loss
+plt.plot(model_history.history['loss'])
+plt.plot(model_history.history['val_loss'])
+plt.title('model loss')
+plt.ylabel('loss')
+plt.xlabel('epoch')
+plt.legend(['train', 'validation'], loc='upper right')
+plt.show()
+
+## Defining the model architecture
+
+### <ol>With Batch Normalization</ol>
+
+# importing batch normalization layer
+from keras.layers import BatchNormalization
+# defining the model architecture and adding batch normalization layers
+model=Sequential()
+
+model.add(InputLayer(input_shape=(224*224*3,)))
+model.add(Dense(100, activation='sigmoid'))
+model.add(Dense(100, activation='sigmoid'))
+model.add(BatchNormalization())
+model.add(Dense(units=1, activation='sigmoid'))
+
+model.summary()
+
+## Compiling the model
+# compiling the model
+
+# defining loss as binary crossentropy
+# defining optimizer as Adam
+# defining metrics as accuracy
+
+model.compile(loss='binary_crossentropy', optimizer=Adam(), metrics=['accuracy'])
 
