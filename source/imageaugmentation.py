@@ -77,7 +77,7 @@ print((X_train.shape, y_train.shape), (X_valid.shape, y_valid.shape))
 # augmenting the training images
 final_train_data = []
 final_target_train = []
-for i in tqdm(range(X_train.shape[0])):
+for i in tqdm.tqdm(range(X_train.shape[0])):
     # original image
     final_train_data.append(X_train[i])
     # image rotation
@@ -90,3 +90,87 @@ for i in tqdm(range(X_train.shape[0])):
     final_train_data.append(random_noise(X_train[i],var=0.2))
     for j in range(5):
         final_target_train.append(y_train[i])
+
+# converting images and target to array
+final_train = np.array(final_train_data)
+final_target_train = np.array(final_target_train)
+
+
+# shape of new training set
+final_train.shape, final_target_train.shape 
+
+print(final_train.shape, final_target_train.shape )
+
+# visualizing the augmented images
+fig,ax = plt.subplots(nrows=1,ncols=5,figsize=(20,20))
+for i in range(5):
+    ax[i].imshow(final_train[i+30])
+    ax[i].axis('off')
+plt.show()
+
+# converting 3 dimensional image to 1 dimensional image
+final_train = final_train.reshape(final_train.shape[0], 224*224*3)
+final_train.shape
+
+print(final_train.shape)
+
+# minimum and maximum pixel values of training images
+final_train.min(), final_train.max()
+
+print(final_train.min(), final_train.max())
+
+# converting 3 dimensional validation image to 1 dimensional image
+final_valid = X_valid.reshape(X_valid.shape[0], 224*224*3)
+final_valid.shape
+
+print(final_valid.shape)
+
+# minimum and maximum pixel values of validation images
+print(final_valid.min(), final_valid.max())
+
+## 4. Defining the model architecture
+from keras.layers import Dense, InputLayer, Dropout, BatchNormalization
+from keras.models import Sequential
+# importing adam optimizer from keras optimizer module 
+from keras.optimizers import Adam
+
+# defining the adam optimizer and setting the learning rate as 10^-5
+adam = Adam(lr=1e-5)
+
+# defining and compiling the model architecture
+model=Sequential()
+
+model.add(InputLayer(input_shape=(224*224*3,)))
+model.add(Dense(100, activation='sigmoid'))
+model.add(BatchNormalization())
+model.add(Dropout(rate=0.5))
+model.add(Dense(100, activation='sigmoid'))
+model.add(BatchNormalization())
+model.add(Dropout(rate=0.5))
+model.add(Dense(units=1, activation='sigmoid'))
+
+model.compile(loss='binary_crossentropy', optimizer=adam, metrics=['accuracy'])
+
+
+# summary of the model
+model.summary()
+
+# training the model
+model_history = model.fit(final_train, final_target_train, epochs=50, batch_size=128,validation_data=(final_valid,y_valid))
+
+from sklearn.metrics import accuracy_score
+
+# Use the model.predict method to get the predicted probabilities
+predicted_probabilities = model.predict(final_valid)
+
+# Convert probabilities to binary class labels using a threshold of 0.5
+predicted_labels = (predicted_probabilities > 0.5).astype('int32')
+
+## 6. Evaluating model performance
+# Calculate and print the accuracy on the validation set
+accuracy = accuracy_score(y_valid, predicted_labels)
+print('Accuracy on validation set:', accuracy * 100, '%')
+
+
+
+
